@@ -34,7 +34,7 @@ var FluidParticles = (function () {
             }
         }).bind(this),
         (function () {
-            this.redrawUI(); 
+            this.redrawUI();
         }).bind(this));
 
         this.simulatorRenderer = new SimulatorRenderer(this.canvas, this.wgl, this.projectionMatrix, this.camera, [GRID_WIDTH, GRID_HEIGHT, GRID_DEPTH], (function () {
@@ -66,23 +66,23 @@ var FluidParticles = (function () {
             var PRESETS = [
                 //dam break
                 [
-                    new BoxEditor.AABB([0, 0, 0], [15, 20, 20]) 
+                    new BoxEditor.AABB([0, 0, 0], [15, 20, 20])
                 ],
 
                 //block drop
                 [
                     new BoxEditor.AABB([0, 0, 0], [40, 7, 20]),
-                    new BoxEditor.AABB([12, 12, 5], [28, 20, 15]) 
+                    new BoxEditor.AABB([12, 12, 5], [28, 20, 15])
                 ],
 
                 //double splash
                 [
                     new BoxEditor.AABB([0, 0, 0], [10, 20, 15]),
-                    new BoxEditor.AABB([30, 0, 5], [40, 20, 20]) 
+                    new BoxEditor.AABB([30, 0, 5], [40, 20, 20])
                 ],
 
             ];
-            
+
             this.presetButton = document.getElementById('preset-button');
             this.presetButton.addEventListener('click', (function () {
                 this.editedSinceLastPreset = false;
@@ -94,7 +94,7 @@ var FluidParticles = (function () {
                     this.boxEditor.boxes.push(preset[i].clone());
                 }
 
-                this.currentPresetIndex = (this.currentPresetIndex + 1) % PRESETS.length; 
+                this.currentPresetIndex = (this.currentPresetIndex + 1) % PRESETS.length;
 
                 this.redrawUI();
 
@@ -111,7 +111,7 @@ var FluidParticles = (function () {
             this.timeStep = 1.0 / 60.0;
 
             this.densitySlider = new Slider(document.getElementById('density-slider'), this.gridCellDensity, 0.2, 3.0, (function (value) {
-                this.gridCellDensity = value; 
+                this.gridCellDensity = value;
 
                 this.redrawUI();
             }).bind(this));
@@ -234,7 +234,7 @@ var FluidParticles = (function () {
             }
 
 
-            this.startButton.textContent = 'Edit';
+            this.startButton.textContent = 'Змінити';
             this.startButton.className = 'start-button-active';
         } else if (this.state === State.EDITING) {
             for (var i = 0; i < simulatingElements.length; ++i) {
@@ -248,18 +248,18 @@ var FluidParticles = (function () {
             document.getElementById('particle-count').innerHTML = this.getParticleCount().toFixed(0) + ' particles';
 
             if (this.boxEditor.boxes.length >= 2 ||
-                this.boxEditor.boxes.length === 1 && (this.boxEditor.interactionState === null || this.boxEditor.interactionState.mode !== BoxEditor.InteractionMode.EXTRUDING && this.boxEditor.interactionState.mode !== BoxEditor.InteractionMode.DRAWING)) { 
+                this.boxEditor.boxes.length === 1 && (this.boxEditor.interactionState === null || this.boxEditor.interactionState.mode !== BoxEditor.InteractionMode.EXTRUDING && this.boxEditor.interactionState.mode !== BoxEditor.InteractionMode.DRAWING)) {
                 this.startButton.className = 'start-button-active';
             } else {
                 this.startButton.className = 'start-button-inactive';
             }
 
-            this.startButton.textContent = 'Start';
+            this.startButton.textContent = 'Старт';
 
             if (this.editedSinceLastPreset) {
-                this.presetButton.innerHTML = 'Use Preset';
+                this.presetButton.innerHTML = 'Використати пресет';
             } else {
-                this.presetButton.innerHTML = 'Next Preset';
+                this.presetButton.innerHTML = 'Наступний пресет';
             }
         }
 
@@ -312,7 +312,7 @@ var FluidParticles = (function () {
 
         var particleCount = particlesWidth * particlesHeight;
         var particlePositions = [];
-        
+
         var boxEditor = this.boxEditor;
 
         var totalVolume = 0;
@@ -323,9 +323,9 @@ var FluidParticles = (function () {
         var particlesCreatedSoFar = 0;
         for (var i = 0; i < boxEditor.boxes.length; ++i) {
             var box = boxEditor.boxes[i];
-            
+
             var particlesInBox = 0;
-            if (i < boxEditor.boxes.length - 1) { 
+            if (i < boxEditor.boxes.length - 1) {
                 particlesInBox = Math.floor(particleCount * box.computeVolume() / totalVolume);
             } else { //for the last box we just use up all the remaining particles
                 particlesInBox = particleCount - particlesCreatedSoFar;

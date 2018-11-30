@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Fluid Particles</title>
+        <title>Симуляція рідин</title>
 
         <meta name="description" content="Real-time particle-based 3D fluid simulation and rendering using WebGL.">
 
@@ -23,52 +23,43 @@
             </style>
 
             <canvas id="canvas" width="1920" height="1080"></canvas>
-            
+
             <div id="ui">
-                <div id="start-button">Start</div>
+                <div id="start-button">Старт</div>
 
-                <div id="preset-button" class="editing-ui">Random Preset</div>
+                <div id="preset-button" class="editing-ui">Довільний набір</div>
 
-                <div class="slider-label editing-ui">Particle Density</div>
+                <div class="slider-label editing-ui">Кількість часточок</div>
                 <div id="density-slider" class="slider editing-ui"></div>
 
                 <div id="particle-count" class="editing-ui"></div>
 
-                <div class="slider-label simulating-ui">Fluidity</div>
+                <div class="slider-label simulating-ui">Рідинність</div>
                 <div id="fluidity-slider" class="slider simulating-ui"></div>
 
-                <div class="slider-label simulating-ui">Speed</div>
+                <div class="slider-label simulating-ui">Швидкість</div>
                 <div id="speed-slider" class="slider simulating-ui"></div>
             </div>
 
 
-            <div class="instructions editing-ui">
-                <span>Space + drag</span> to rotate camera <br/>
-                <span>Scroll</span> to zoom in and out <br/>
+            <div class="instructions Eing-ui">
+                <span>Пробіл + тягнути</span> для поворота камери <br/>
+                <span>Скрол</span> для приближення та віддалення <br/>
                 <br/>
-                <span>Draw on walls</span> to create new boxes <br/>
-                <span>Drag box faces</span> to resize <br/>
-                <span>Shift + drag box faces</span> to translate <br/>
+                <span>Намалювати на стінах</span> для створення нових кубів <br/>
+                <span>Потянути за сторони</span> для масштабування <br/>
+                <span>Shift + тягнути</span> для масштабування <br/>
             </div>
 
-            <div class="instructions simulating-ui">
-                <span>Drag</span> to rotate camera<br/>
-                <span>Scroll</span> to zoom in and out <br/>
-                <span>Move mouse</span> to push particles
-            </div>
-
-            <div id="footer">
-               <a href="http://david.li">david.li</a> | <a href="https://youtu.be/DhNt_A3k4B4">Video</a> | <a href="https://github.com/dli/fluid">Code</a>  
+            <div class="instructions edit simulating-ui">
+                <span>Тягнути</span> для повороту камери<br/>
+                <span>Скрол</span> для масштабування <br/>
+                <span>Рухати мишею</span> для руху часточок
             </div>
         </script>
 
         <script type="text/template" id="no-support">
             <div id="container">
-                <div id="error"></div>
-                <div id="video">You can still view a video.<br/>
-                    <iframe width="854" height="480" style="margin-top: 7px;" src="https://www.youtube.com/embed/DhNt_A3k4B4" frameborder="0" allowfullscreen></iframe> 
-                </div>
-                <div id="linkback"><a href="http://david.li">david.li</a></div>
             </div>
         </script>
 
