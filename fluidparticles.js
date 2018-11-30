@@ -245,7 +245,7 @@ var FluidParticles = (function () {
                 editingElements[i].style.display = 'block';
             }
 
-            document.getElementById('particle-count').innerHTML = this.getParticleCount().toFixed(0) + ' particles';
+            document.getElementById('particle-count').innerHTML = this.getParticleCount().toFixed(0) + ' часточок';
 
             if (this.boxEditor.boxes.length >= 2 ||
                 this.boxEditor.boxes.length === 1 && (this.boxEditor.interactionState === null || this.boxEditor.interactionState.mode !== BoxEditor.InteractionMode.EXTRUDING && this.boxEditor.interactionState.mode !== BoxEditor.InteractionMode.DRAWING)) {
