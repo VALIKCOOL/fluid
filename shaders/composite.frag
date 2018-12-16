@@ -40,7 +40,7 @@ void main () {
     vec3 worldSpacePosition = vec3(u_inverseViewMatrix * vec4(viewSpacePosition, 1.0));
 
     float speed = data.b;
-    vec3 color = hsvToRGB(vec3(max(0.6 - speed * 0.0025, 0.52), 0.75, 1.0));
+    vec3 color = hsvToRGB(vec3(max(0.6 - speed * 0.0025, 0.52), 0.25, 1.0));
 
 
     vec4 lightSpacePosition = u_lightProjectionViewMatrix * vec4(worldSpacePosition, 1.0);
@@ -48,7 +48,7 @@ void main () {
     lightSpacePosition *= 0.5;
     lightSpacePosition += 0.5;
     vec2 lightSpaceCoordinates = lightSpacePosition.xy;
-    
+
     float shadow = 1.0;
     const int PCF_WIDTH = 2;
     const float PCF_NORMALIZATION = float(PCF_WIDTH * 2 + 1) * float(PCF_WIDTH * 2 + 1);
@@ -61,7 +61,7 @@ void main () {
     }
 
 
-    float ambient = 1.0 - occlusion * 0.7;
+    float ambient = 1.0 - occlusion * 0.5;
     float direct = 1.0 - (1.0 - shadow) * 0.8;
 
     color *= ambient * direct;
